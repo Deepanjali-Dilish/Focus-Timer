@@ -1,33 +1,31 @@
-body{
+body {
   font-family: Arial, sans-serif;
   background: #868c8d;
 }
 
-.container{
+.container {
   padding: 13px;
 }
 
-.left,
-.right{
+.left, .right {
   flex: 1;
   min-width: 280px;
 }
 
-.left{
+.left {
   max-width: 60%;
 }
 
-.log{
+.log {
   background: #fff;
   padding: 10px;
   margin-bottom: 15px;
-  border-left: 5px solid ;
+  border-left: 5px solid;
   border-radius: 15px;
   cursor: pointer;
-  /* width: 100%; */
 }
 
-.circle-timer{
+.circle-timer {
   width: 180px;
   height: 180px;
   border-radius: 50%;
@@ -43,12 +41,12 @@ body{
   margin: auto;
 }
 
-.buttons{
+.buttons {
   margin-top: 20px;
   text-align: center;
 }
 
-button{
+button {
   padding: 10px 20px;
   font-size: 16px;
   margin: 0 10px;
@@ -56,29 +54,27 @@ button{
   color: white;
 }
 
-h2{
+h2 {
   text-align: center;
   margin-bottom: 40px;
   color: white;
   font-size: 30px;
 }
 
-.log.active{
+.log.active {
   background-color: #ffe082;
   border-left-color: #ff9800;
 }
 
-button:enabled{
-  /* background-color: #14d114; */
+button:enabled {
   background-color: green;
 }
 
-button:disabled{
-  /* background-color: rgb(76, 153, 76); */
+button:disabled {
   background-color: red;
 }
 
-.timer-box{
+.timer-box {
   background: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
@@ -86,19 +82,25 @@ button:disabled{
   margin-bottom: 20px;
 }
 
-.deleteBtn{
+.deleteBtn {
   padding: 5px 10px;
   font-size: 14px;
   margin: 3px 0px 0px;
   font-weight: normal;
   background-color: #4caf50;
+  border: none;
+  cursor: pointer;
 }
 
-.gap{
+.deleteBtn:hover {
+  background-color: #45a049;
+}
+
+.gap {
   margin: 4px 0px 4px 0px;
 }
 
-.head{
+.head {
   font-size: 22px;
   color: white;
   margin: 0;
@@ -106,22 +108,66 @@ button:disabled{
   font-weight: 700;
 }
 
+.arrow {
+  color: black; /* Ensure the arrow is visible */
+  padding: 10px;
+  cursor: pointer;
+}
+
+.log {
+  background: #f8f8f8;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.log-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arrow-container {
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+}
+
+.arrow {
+  font-size: 20px;
+  color: #333;
+}
+
+.log-details {
+  margin-top: 10px;
+  display: none;
+}
+
+.gap {
+  margin-bottom: 8px;
+}
+
+.deleteBtn {
+  margin-top: 10px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
 @media screen and (min-width: 768px) {
-
-  body{
+  body {
     padding-left: 40px;
     padding-right: 40px;
   }
-
-  /* .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 13px;
-  } */
-
 
   .right {
     order: 2;
@@ -135,55 +181,51 @@ button:disabled{
     order: 1;
   }
 
-  .timer-box{
+  .timer-box {
     padding: 30px;
   }
 
-  .log{
-   background: #fff;
-   padding: 10px;
-   margin-bottom: 15px;
-   border-left: 5px solid;
-   border-radius: 15px;
-   cursor: pointer;
-   /* width: 215%; */
+  .log {
+    background: #fff;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-left: 5px solid;
+    border-radius: 15px;
+    cursor: pointer;
   }
-
 }
 
-@media screen and (min-width: 1330px){
-  body{
+@media screen and (min-width: 1330px) {
+  body {
     padding-left: 40px;
     padding-right: 40px;
   }
 
-  .container{
+  .container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
-    /* padding: 13px; */
   }
 
-  .right{
+  .right {
     order: 2;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     margin-right: 150px;
-    /* width: 100%; */
   }
 
-  .left{
+  .left {
     order: 1;
   }
 
-  .timer-box{
+  .timer-box {
     padding: 30px;
   }
 
-  .log{
+  .log {
     background: #fff;
     padding: 10px;
     margin-bottom: 15px;
@@ -193,15 +235,15 @@ button:disabled{
     width: 215%;
   }
 
-  h2{
+  h2 {
     font-size: 35px;
   }
-  .head{
+
+  .head {
     font-size: 25px;
   }
 
-  .gap{
+  .gap {
     font-size: 18px;
   }
 }
-
