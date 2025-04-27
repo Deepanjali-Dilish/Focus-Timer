@@ -1,153 +1,3 @@
-// let startTime = null;
-// let interval = null;
-// let timerCount = 1;
-// let activeLogIndex = null;
-// let previousStop = null;
-// let previousDuration = 0;
-
-// const startBtn = document.getElementById('startBtn');
-// const stopBtn = document.getElementById('stopBtn');
-// const output = document.getElementById('output');
-// const liveTimer = document.getElementById('liveTimer');
-
-// function formatTime(ms) {
-//   const totalSeconds = Math.floor(ms / 1000);
-//   const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
-//   const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
-//   const seconds = String(totalSeconds % 60).padStart(2, '0');
-//   return `${hours}:${minutes}:${seconds}`;
-// }
-
-// function saveLog(log, index) {
-//   const logs = JSON.parse(localStorage.getItem('timerLogs')) || [];
-//   if (index !== undefined) logs[index] = log;
-//   else logs.push(log);
-//   localStorage.setItem('timerLogs', JSON.stringify(logs));
-// }
-
-// function deleteLog(index) {
-//   const logs = JSON.parse(localStorage.getItem('timerLogs')) || [];
-//   logs.splice(index, 1);  
-//   localStorage.setItem('timerLogs', JSON.stringify(logs));
-
-//   loadLogs();
-// }
-
-// function addLogToDOM(log, index) {
-//   const logDiv = document.createElement('div');
-//   logDiv.className = 'log';
-//   logDiv.innerHTML = `
-//     <strong>Timer ${index + 1}</strong>
-//     <p class="gap">Start Time: ${log.start}</p>
-//     <p class="gap">Stop Time: ${log.stop}</p>
-//     <p class="gap">Duration: <span class="duration">${log.duration}</span></p>
-//     <button class="deleteBtn">Delete Timer</button>
-//   `;
-  
-//   const deleteBtn = logDiv.querySelector('.deleteBtn');
-//   deleteBtn.addEventListener('click', (event) => {
-//     event.stopPropagation();  
-//     deleteLog(index); 
-//   });
-
-//   logDiv.addEventListener('click', () => {
-//     document.querySelectorAll('.log').forEach(el => el.classList.remove('active'));
-//     logDiv.classList.add('active');
-//     activeLogIndex = index;
-
-//     const logs = JSON.parse(localStorage.getItem('timerLogs')) || [];
-//     const selectedLog = logs[index];
-
-//     previousStop = selectedLog.rawStop;
-//     previousDuration = selectedLog.rawDuration;
-
-//     startTime = new Date(); 
-//     liveTimer.textContent = formatTime(previousDuration);
-//     startBtn.textContent = 'Resume';
-//     stopBtn.disabled = true;
-//     startBtn.disabled = false;
-//   });
-  
-//   output.appendChild(logDiv);
-// }
-
-
-// function loadLogs() {
-//   output.innerHTML = '';
-//   const logs = JSON.parse(localStorage.getItem('timerLogs')) || [];
-//   logs.forEach((log, index) => addLogToDOM(log, index));
-//   timerCount = logs.length;
-// }
-
-// startBtn.addEventListener('click', () => {
-//   startTime = new Date();
-
-//   startBtn.disabled = true;
-//   stopBtn.disabled = false;
-
-//   interval = setInterval(() => {
-//     const elapsed = new Date() - startTime;
-//     const total = activeLogIndex !== null ? previousDuration + elapsed : elapsed;
-//     liveTimer.textContent = formatTime(total);
-//   }, 1000);
-// });
-
-// stopBtn.addEventListener('click', () => {
-//   const stopTime = new Date();
-//   clearInterval(interval);
-
-//   let totalDuration;
-//   if (activeLogIndex !== null) {
-//     const newElapsed = stopTime - previousStop;
-//     totalDuration = previousDuration + newElapsed;
-//   } else {
-//     totalDuration = stopTime - startTime;
-//   }
-
-//   const formattedDuration = formatTime(totalDuration);
-
-//   if (activeLogIndex !== null) {
-//     const logs = JSON.parse(localStorage.getItem('timerLogs')) || [];
-//     const log = logs[activeLogIndex];
-//     log.stop = stopTime.toLocaleString();
-//     log.duration = formattedDuration;
-//     log.rawStop = stopTime.getTime();
-//     log.rawDuration = totalDuration;
-//     saveLog(log, activeLogIndex);
-//   } else {
-//     const log = {
-//       start: startTime.toLocaleString(),
-//       stop: stopTime.toLocaleString(),
-//       duration: formattedDuration,
-//       rawStart: startTime.getTime(),
-//       rawStop: stopTime.getTime(),
-//       rawDuration: totalDuration
-//     };
-//     saveLog(log);
-//     timerCount++;
-//   }
-
-//   previousStop = null;
-//   previousDuration = 0;
-//   activeLogIndex = null;
-
-//   document.querySelectorAll('.log').forEach(el => el.classList.remove('active'));
-//   startBtn.textContent = 'Start';
-//   startBtn.disabled = false;
-//   stopBtn.disabled = true;
-//   liveTimer.textContent = '00:00:00';
-//   loadLogs();
-// });
-
-// loadLogs();
-
-
-// this is my code i need to  change some thing in first session the start time substract  by stop time
-// in second session the resume start time is substract by resume stop time and that value is added to the previous duration
-// i need to also display the resume time
-
-
-
 let startTime = null;
 let interval = null;
 let timerCount = 1;
@@ -160,7 +10,7 @@ const output = document.getElementById('output');
 const liveTimer = document.getElementById('liveTimer');
 
 function formatTime(ms) {
-  const totalSeconds = Math.round(ms / 1000); // changed from Math.floor to Math.round
+  const totalSeconds = Math.round(ms / 1000); 
   const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
   const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
   const seconds = String(totalSeconds % 60).padStart(2, '0');
@@ -208,7 +58,7 @@ function addLogToDOM(log, index) {
   const arrowContainer = logDiv.querySelector('.arrow-container');
   const logDetails = logDiv.querySelector('.log-details');
 
-  // Add resume sessions inside log-details
+  
   if (log.resumeSessions && log.resumeSessions.length > 0) {
     log.resumeSessions.forEach((session, i) => {
       const resumeBlock = document.createElement('div');
@@ -238,7 +88,7 @@ function addLogToDOM(log, index) {
   });
   logDiv.appendChild(deleteBtn);
 
-  // ONLY arrow click expands
+  
   arrowContainer.addEventListener('click', (event) => {
     event.stopPropagation();
     logDetails.style.display = (logDetails.style.display === 'none') ? 'block' : 'none';
@@ -292,49 +142,6 @@ startBtn.addEventListener('click', () => {
   }, 1000);
 });
 
-// stopBtn.addEventListener('click', () => {
-//   const stopTime = new Date();
-//   clearInterval(interval);
-
-//   const elapsed = stopTime - startTime;
-//   const formattedStop = formatDateTime(stopTime);
-
-//   if (activeLogIndex !== null) {
-//     const logs = JSON.parse(localStorage.getItem('timerLogs')) || [];
-//     const log = logs[activeLogIndex];
-
-//     if (!log.resumeSessions) log.resumeSessions = [];
-
-//     if (log._currentResume) {
-//       log._currentResume.resumeStop = formattedStop;
-//       log._currentResume.resumeDuration = elapsed;
-//       log.resumeSessions.push(log._currentResume);
-//       delete log._currentResume;
-//     }
-
-//     saveLog(log, activeLogIndex);
-//   } else {
-//     const log = {
-//       start: formatDateTime(startTime),
-//       stop: formattedStop,
-//       duration: elapsed,
-//       resumeSessions: []
-//     };
-//     saveLog(log);
-//     timerCount++;
-//   }
-
-//   previousTotalDuration = 0;
-//   activeLogIndex = null;
-
-//   startBtn.textContent = 'Start';
-//   startBtn.disabled = false;
-//   stopBtn.disabled = true;
-//   liveTimer.textContent = '00:00:00';
-
-//   loadLogs();
-// });
-
 stopBtn.addEventListener('click', () => {
   const stopTime = new Date();
   clearInterval(interval);
@@ -380,17 +187,16 @@ stopBtn.addEventListener('click', () => {
   liveTimer.textContent = '00:00:00';
 
   if (logUpdated) {
-    loadLogs();  // This reloads the logs
+    loadLogs(); 
 
-    // Automatically expand the details of the last log (the one that was just stopped)
     const lastLogDiv = document.querySelector('.log:last-child');
     if (lastLogDiv) {
       const arrowContainer = lastLogDiv.querySelector('.arrow-container');
       const logDetails = lastLogDiv.querySelector('.log-details');
       
-      // Toggle the display of the log details (expand it)
-      logDetails.style.display = 'block';  // Ensure the details are visible
-      arrowContainer.querySelector('.arrow').classList.add('expanded');  // Optional: Change arrow icon to indicate expanded state
+  
+      logDetails.style.display = 'block'; 
+      arrowContainer.querySelector('.arrow').classList.add('expanded');  
     }
   }
 });
