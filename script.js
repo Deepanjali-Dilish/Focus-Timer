@@ -96,8 +96,6 @@ function addLogToDOM(log, index) {
     arrowContainer.querySelector('.arrow').classList.toggle('expanded', !isVisible);
   });
   
-
-
   logDiv.addEventListener('click', () => {
     document.querySelectorAll('.log').forEach(el => el.classList.remove('active'));
     logDiv.classList.add('active');
