@@ -76,11 +76,11 @@ function addLogToDOM(log, index) {
   const totalDuration = log.duration + (log.resumeSessions?.reduce((acc, session) => acc + session.resumeDuration, 0) || 0);
   const totalBlock = document.createElement('div');
   totalBlock.className = 'gap';
-  totalBlock.innerHTML = `<strong>Total Time: ${formatTime(totalDuration)}</strong>`;
+  totalBlock.innerHTML = `<strong>Total Duration: ${formatTime(totalDuration)}</strong>`;
   logDetails.appendChild(totalBlock);
 
   const deleteBtn = document.createElement('button');
-  deleteBtn.textContent = 'Delete';
+  deleteBtn.textContent = 'Delete Timer';
   deleteBtn.className = 'deleteBtn';
   deleteBtn.addEventListener('click', (event) => {
     event.stopPropagation();
@@ -91,8 +91,11 @@ function addLogToDOM(log, index) {
   
   arrowContainer.addEventListener('click', (event) => {
     event.stopPropagation();
-    logDetails.style.display = (logDetails.style.display === 'none') ? 'block' : 'none';
+    const isVisible = logDetails.style.display === 'block';
+    logDetails.style.display = isVisible ? 'none' : 'block';
+    arrowContainer.querySelector('.arrow').classList.toggle('expanded', !isVisible);
   });
+  
 
 
   logDiv.addEventListener('click', () => {

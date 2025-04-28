@@ -52,6 +52,7 @@ button {
   margin: 0 10px;
   font-weight: 800;
   color: white;
+  border: none;
 }
 
 h2 {
@@ -82,22 +83,8 @@ button:disabled {
   margin-bottom: 20px;
 }
 
-.deleteBtn {
-  padding: 5px 10px;
-  font-size: 14px;
-  margin: 3px 0px 0px;
-  font-weight: normal;
-  background-color: #4caf50;
-  border: none;
-  cursor: pointer;
-}
-
 .deleteBtn:hover {
   background-color: #45a049;
-}
-
-.gap {
-  margin: 4px 0px 4px 0px;
 }
 
 .head {
@@ -109,7 +96,7 @@ button:disabled {
 }
 
 .arrow {
-  color: black; /* Ensure the arrow is visible */
+  color: black; 
   padding: 10px;
   cursor: pointer;
 }
@@ -154,13 +141,22 @@ button:disabled {
 }
 
 .deleteBtn {
-  margin-top: 10px;
-  background-color: #e74c3c;
+  margin: 10px 0px 0px 0px;
   color: white;
   border: none;
   padding: 6px 10px;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.arrow.expanded {
+  transform: rotate(180deg);
 }
 
 @media screen and (min-width: 768px) {
