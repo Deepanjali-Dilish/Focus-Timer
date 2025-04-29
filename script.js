@@ -37,7 +37,6 @@ function deleteLog(index) {
   loadLogs();
 }
 
-
 function addLogToDOM(log, index) {
   const logDiv = document.createElement('div');
   logDiv.className = 'log';
@@ -58,7 +57,6 @@ function addLogToDOM(log, index) {
   const arrowContainer = logDiv.querySelector('.arrow-container');
   const logDetails = logDiv.querySelector('.log-details');
 
-  
   if (log.resumeSessions && log.resumeSessions.length > 0) {
     log.resumeSessions.forEach((session, i) => {
       const resumeBlock = document.createElement('div');
@@ -88,14 +86,13 @@ function addLogToDOM(log, index) {
   });
   logDiv.appendChild(deleteBtn);
 
-  
   arrowContainer.addEventListener('click', (event) => {
     event.stopPropagation();
     const isVisible = logDetails.style.display === 'block';
     logDetails.style.display = isVisible ? 'none' : 'block';
     arrowContainer.querySelector('.arrow').classList.toggle('expanded', !isVisible);
   });
-  
+
   logDiv.addEventListener('click', () => {
     document.querySelectorAll('.log').forEach(el => el.classList.remove('active'));
     logDiv.classList.add('active');
@@ -106,7 +103,6 @@ function addLogToDOM(log, index) {
     startBtn.disabled = false;
     stopBtn.disabled = true;
   });
-  
 
   output.appendChild(logDiv);
 }
@@ -151,6 +147,7 @@ stopBtn.addEventListener('click', () => {
   const formattedStop = formatDateTime(stopTime);
 
   let logUpdated = false;
+  let updatedIndex = null;
 
   if (activeLogIndex !== null) {
     const logs = JSON.parse(localStorage.getItem('timerLogs')) || [];
@@ -167,6 +164,7 @@ stopBtn.addEventListener('click', () => {
 
     saveLog(log, activeLogIndex);
     logUpdated = true;
+    updatedIndex = activeLogIndex;
   } else {
     const log = {
       start: formatDateTime(startTime),
@@ -190,18 +188,18 @@ stopBtn.addEventListener('click', () => {
   if (logUpdated) {
     loadLogs(); 
 
-    const lastLogDiv = document.querySelector('.log:last-child');
-    if (lastLogDiv) {
-      const arrowContainer = lastLogDiv.querySelector('.arrow-container');
-      const logDetails = lastLogDiv.querySelector('.log-details');
-      
-  
+    const allLogs = document.querySelectorAll('.log');
+    const targetIndex = (updatedIndex !== null) ? updatedIndex : allLogs.length - 1;
+    const targetLogDiv = allLogs[targetIndex];
+
+    if (targetLogDiv) {
+      const arrowContainer = targetLogDiv.querySelector('.arrow-container');
+      const logDetails = targetLogDiv.querySelector('.log-details');
+
       logDetails.style.display = 'block'; 
       arrowContainer.querySelector('.arrow').classList.add('expanded');  
     }
   }
 });
 
-
 loadLogs();
-
